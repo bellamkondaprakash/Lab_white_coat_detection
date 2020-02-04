@@ -88,17 +88,20 @@ def preprocessing_data(data_dir):
     white_frock = white_frock_train.glob('*.jpg')
     medical_coat = medical_coat_train.glob ('*.jpg')
 
-    # An empty list. We will insert the data into this list in (img_path, label) format
-    train_data = []
+    def get_data(raw_data1,raw_data2):
+        # An empty list. We will insert the data into this list in (img_path, label) format
+        train_data = []
 
-    # Go through all the normal cases. The label for these cases will be 0
-    for img in white_frock:
-        train_data.append((img,0))
+        # Go through all the normal cases. The label for these cases will be 0
+        for img in raw_data1:
+            train_data.append((img,0))
 
-    # Go through all the pneumonia cases. The label for these cases will be 1
-    for img in medical_coat:
-        train_data.append((img, 1))
+        # Go through all the pneumonia cases. The label for these cases will be 1
+        for img in raw_data2:
+            train_data.append((img, 1))
 
+        return(train_data)
+    train_data = get_data(white_frock,medical_coat)
     # Get a pandas dataframe from the data we have in our list
     train_data = pd.DataFrame(train_data, columns=['image', 'label'],index=None)
 
@@ -172,16 +175,17 @@ def preprocessing_data(data_dir):
         valid_labels.append(label)
 
     # Convert the list into numpy arrays
-    valid_images = np.array(valid_data)
+    valid_data = np.array(valid_data)
     valid_labels = np.array(valid_labels)
 
-    valid_data = pd.DataFrame(valid_data,valid_labels, columns=['image', 'label'],index=None)
+    # valid_data = pd.DataFrame(valid_data, columns=['image', 'label'],index=None)
     print("Total number of validation examples: ", valid_data.shape)
     print("Total number of labels:", valid_labels.shape)
 
-    return(train_data,valid_data)
+    return(train_data,valid_data,valid_labels)
 
-train_data,valid_data = preprocessing_data(data_dir)
+train_data,valid_data,valid_labels = preprocessing_data(data_dir)
+
 def data_gen(data, batch_size):
     # Get total number of samples in the data
     n = len(data)

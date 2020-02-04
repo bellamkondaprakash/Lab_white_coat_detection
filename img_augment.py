@@ -7,6 +7,7 @@ Created on Sat Jan 25 16:07:19 2020
 """
 
 import tensorflow as tf
+import argparse
 import matplotlib.pyplot as plt
 import matplotlib.image as mimg
 import numpy as np
