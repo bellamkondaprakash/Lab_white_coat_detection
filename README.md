@@ -6,7 +6,10 @@
 
  
  * Step 1: run the [Download_libaries.sh](https://github.com/bellamkondaprakash/Lab_white_coat_detection/blob/master/Download_libaries.sh) file to not struck with error while running the code
- 
+ ```bash
+ source env/bin/activate
+ sh Download_libaries.sh
+ ```
  * Step 2: scrap the images from the google with query img and number of images to scrap and directory to save[Image scraper](https://github.com/bellamkondaprakash/Lab_white_coat_detection/blob/master/google_image_scrap.py)
  
  ```bash
