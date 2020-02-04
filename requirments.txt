@@ -1,0 +1,13 @@
+h5py
+seaborn
+imgaug
+pandas
+seaborn
+matplotlib
+matplotlib
+Pillow
+pathlib
+scikit-image
+keras
+sklearn
+mlxtend
